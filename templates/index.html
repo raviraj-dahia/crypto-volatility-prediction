@@ -108,10 +108,30 @@ async function predict() {
 
         if (result.error) {
             document.getElementById("result").innerText = "Error: " + result.error;
-        } else {
-            document.getElementById("result").innerText =
-                "Predicted Volatility: " + result.predicted_volatility;
+            return;
         }
+        // volatility % + risk level
+
+        const value = result.predicted_volatility;
+        const percent = (value * 100).toFixed(2);
+
+        let level = "";
+        let color = "";
+
+        if (value < 0.02){
+            level = "Low Risk";
+            color = "green";
+        }else if (value < 0.05){
+            level = "High Risk";
+            color = "orange"
+        }else{
+            level = "High Risk";
+            color = "red";
+        }
+
+        const resultDiv= document.getElementById("result");
+        resultDiv.style.color = color;
+        resultDiv.innerText = `Volatility: ${percent}% (${level})`;   
 
     } catch (error) {
         console.error(error);
