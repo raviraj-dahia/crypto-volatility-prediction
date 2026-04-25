@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import joblib
 import pandas as pd
@@ -38,7 +38,7 @@ def create_features(df):
 
 @app.route('/')
 def home():
-    return "API is running"
+    return render_template("index.html")
 
 
 @app.route('/predict', methods=['POST'])
