@@ -118,10 +118,10 @@ async function predict() {
         let level = "";
         let color = "";
 
-        if (value < 0.02){
+        if (value < 0.03){
             level = "Low Risk";
             color = "green";
-        }else if (value < 0.05){
+        }else if (value < 0.06){
             level = "High Risk";
             color = "orange"
         }else{
