@@ -61,7 +61,7 @@ def predict():
         df = history_df.tail(1)
 
         # Handle NaN (important for rolling features)
-        df = df.fillna(method='bfill').fillna(method='ffill')
+        df = df.bfill().ffill()
 
         # Select required features
         df = df[features]
